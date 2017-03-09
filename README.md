@@ -1,2 +1,2 @@
 # sudoku
-a simple game
+a simple game with Java
