@@ -1,0 +1,1667 @@
+			back
+/////////////////////////////////////////////////////////////////////////
+package sudoku;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import javax.swing.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
+/**
+ *
+ * @steve Jobs
+ */
+public class Back extends JFrame {
+    
+    Timer time_start;
+    // buttons effects 
+    Color color = new Color(54, 21, 2);
+    Font font = new Font("SERIF", Font.ITALIC + Font.ROMAN_BASELINE, 60);
+    Font font_button = new Font("SERIF", Font.ITALIC + Font.BOLD, 40);
+    Font font_team = new Font("SERIF", Font.BOLD + Font.ITALIC, 23);
+    Color color_team = new Color(255, 255, 255);
+    // buttons 
+    JButton btn_NewGame = new JButton("NEW GAME");
+    JButton btn_levels = new JButton("LEVEL");
+    JButton btn_HighScore = new JButton("HIGH SCORE");
+    JButton btn_help = new JButton("HELP");
+    JButton btn_about_team = new JButton("ABOUT TEAM");
+    JButton btn_exit = new JButton("EXIT");
+    JButton voice_on = new JButton(new ImageIcon("Images//on.gif"));
+    JButton voice_off = new JButton(new ImageIcon("Images//off.gif"));
+
+    // label for about team
+    JLabel label_team = new JLabel("");
+    JLabel label_team2 = new JLabel("");
+    JLabel label_team3 = new JLabel("");
+    JLabel label_team4 = new JLabel("");
+    JLabel label_team5 = new JLabel("");
+    JLabel label_team6 = new JLabel("");
+    JLabel label_team7 = new JLabel("");
+    JLabel label_team8 = new JLabel("");
+    JLabel label_team9 = new JLabel("");
+    JLabel label_team10 = new JLabel("");
+    JLabel label_team11 = new JLabel("");
+    JLabel label_team12 = new JLabel("");
+    JLabel label_team13 = new JLabel("");
+    JLabel label_team14 = new JLabel("");
+
+    char ch[] = print();
+    static int i = 0;
+    static String rep = "";
+
+    // help button 
+    JPanel panel_help = new JPanel();
+    JLabel label_image_help = new JLabel(new ImageIcon("Images\\back.gif"));
+    Sound s = new Sound ();
+    static Back back ;
+    Back() throws Exception {
+
+     
+        s.play_start();
+        
+        this.setLayout(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setUndecorated(true);
+        this.setContentPane(new JLabel(new ImageIcon("Images\\Background2.jpg")));
+
+        // background panels for buttons 
+        // button new game 
+        btn_NewGame.setBounds(500, 240, 300, 40);
+        transparancy(btn_NewGame);
+        btn_NewGame.setFont(font_button);
+        btn_NewGame.setCursor(new Cursor(HAND_CURSOR));
+        btn_NewGame.addActionListener(new action());
+
+        add(btn_NewGame);
+
+        // button high
+        btn_HighScore.setBounds(500, 360, 300, 40);
+        transparancy(btn_HighScore);
+        btn_HighScore.setFont(font_button);
+        btn_HighScore.setCursor(new Cursor(HAND_CURSOR));
+        btn_HighScore.addActionListener(new action());
+        add(btn_HighScore);
+
+        // help
+        btn_help.setBounds(500, 420, 300, 40);
+        transparancy(btn_help);
+        btn_help.setFont(font_button);
+        btn_help.setCursor(new Cursor(HAND_CURSOR));
+        btn_help.addActionListener(new action());
+        add(btn_help);
+        // aboutte
+        btn_about_team.setBounds(500, 480, 300, 40);
+        transparancy(btn_about_team);
+        btn_about_team.setFont(font_button);
+        btn_about_team.setCursor(new Cursor(HAND_CURSOR));
+        btn_about_team.addActionListener(new action());
+        add(btn_about_team);
+
+        // LEVEL 
+        btn_levels.setBounds(500, 300, 300, 40);
+        transparancy(btn_levels);
+        btn_levels.setFont(font_button);
+        btn_levels.setCursor(new Cursor(HAND_CURSOR));
+        btn_levels.addActionListener(new action());
+        add(btn_levels);
+
+        // exit
+        btn_exit.setBounds(500, 540, 300, 40);
+        transparancy(btn_exit);
+        btn_exit.setFont(font_button);
+        btn_exit.setCursor(new Cursor(HAND_CURSOR));
+        btn_exit.addActionListener(new action());
+        add(btn_exit);
+
+        // button of sound 
+        voice_on.setBounds(50, 50, 50, 50);
+        transparancy(voice_on);
+        voice_on.setCursor(new Cursor(HAND_CURSOR));
+        voice_on.addActionListener(new action());
+        add(voice_on);
+        ///////////////////////////////////////////
+        
+        voice_off.setBounds(50, 50, 50, 50);
+        transparancy(voice_off);
+        voice_off.setCursor(new Cursor(HAND_CURSOR));
+        voice_off.addActionListener(new action());
+        voice_off.setVisible(false);
+        add(voice_off);
+
+        // labels for about team
+        label_team.setBounds(80, 100, 300, 60);
+        label_team.setBackground(Color.black);
+        label_team.setFont(font_team);
+        label_team.setForeground(color_team);
+        add(label_team);
+        // labels for about team2 
+        label_team2.setBounds(80, 130, 300, 60);
+        label_team2.setBackground(Color.black);
+        label_team2.setFont(font_team);
+        label_team2.setForeground(color_team);
+        add(label_team2);
+        // labels for about team3 
+        label_team3.setBounds(80, 160, 300, 60);
+        label_team3.setBackground(Color.black);
+        label_team3.setFont(font_team);
+        label_team3.setForeground(color_team);
+        add(label_team3);
+        // labels for about team4 
+        label_team4.setBounds(80, 190, 300, 60);
+        label_team4.setBackground(Color.black);
+        label_team4.setFont(font_team);
+        label_team4.setForeground(color_team);
+        add(label_team4);
+        // labels for about team4 
+        label_team5.setBounds(80, 220, 300, 60);
+        label_team5.setBackground(Color.black);
+        label_team5.setFont(font_team);
+        label_team5.setForeground(color_team);
+        add(label_team5);
+        // labels for about team4 
+        label_team6.setBounds(80, 250, 300, 60);
+        label_team6.setBackground(Color.black);
+        label_team6.setFont(font_team);
+        label_team6.setForeground(color_team);
+        add(label_team6);
+        // labels for about team4 
+        label_team7.setBounds(80, 280, 300, 60);
+        label_team7.setBackground(Color.black);
+        label_team7.setFont(font_team);
+        label_team7.setForeground(color_team);
+        add(label_team7);
+        // labels for about team4 
+        label_team8.setBounds(80, 310, 300, 60);
+        label_team8.setBackground(Color.black);
+        label_team8.setFont(font_team);
+        label_team8.setForeground(color_team);
+        add(label_team8);
+        // labels for about team4 
+        label_team9.setBounds(80, 340, 300, 60);
+        label_team9.setBackground(Color.black);
+        label_team9.setFont(font_team);
+        label_team9.setForeground(color_team);
+        add(label_team9);
+        // labels for about team4 
+        label_team10.setBounds(80, 370, 300, 60);
+        label_team10.setBackground(Color.black);
+        label_team10.setFont(font_team);
+        label_team10.setForeground(color_team);
+        add(label_team10);
+        // labels for about team4 
+        label_team11.setBounds(80, 400, 300, 60);
+        label_team11.setBackground(Color.black);
+        label_team11.setFont(font_team);
+        label_team11.setForeground(color_team);
+        add(label_team11);
+        // labels for about team4 
+        label_team12.setBounds(80, 430, 300, 60);
+        label_team12.setBackground(Color.black);
+        label_team12.setFont(font_team);
+        label_team12.setForeground(color_team);
+        add(label_team12);
+        // labels for about team4 
+        label_team13.setBounds(80, 460, 300, 60);
+        label_team13.setBackground(Color.black);
+        label_team13.setFont(font_team);
+        label_team13.setForeground(color_team);
+        add(label_team13);
+        // labels for about team4 
+        label_team14.setBounds(80, 490, 300, 60);
+        label_team14.setBackground(Color.black);
+        label_team14.setFont(font_team);
+        label_team14.setForeground(color_team);
+        add(label_team14);
+
+        panel_help.setBounds(300, 190, 700, 470);
+        panel_help.setBackground(new Color(108, 28, 22));
+        panel_help.add(label_image_help);
+        add(panel_help);
+        panel_help.setVisible(false);
+                
+    }
+    
+    public class action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            Object ob = ae.getSource();
+            if (ob.equals(btn_exit)) {
+                System.exit(0);
+            } else if (ob.equals(voice_on)) {
+                voice_on.setVisible(false);
+                voice_off.setVisible(true);
+                s.stop_start();
+            } else if (ob.equals(voice_off)) {
+                voice_off.setVisible(false);
+                voice_on.setVisible(true);
+                s.play_start();
+            } else if (ob.equals(btn_NewGame)) {
+
+                try {
+                    s.stop_start();
+                    new Face().setVisible(true);
+                } catch (Exception ex) {
+
+                }
+
+            } else if (ob.equals(btn_about_team)) {
+                {
+                    label_team.setText("");
+                    label_team2.setText("");
+                    label_team3.setText("");
+                    label_team4.setText("");
+                    label_team5.setText("");
+                    label_team6.setText("");
+                    label_team7.setText("");
+                    label_team8.setText("");
+                    label_team9.setText("");
+                    label_team10.setText("");
+                    label_team11.setText("");
+                    label_team12.setText("");
+                    label_team13.setText("");
+                    label_team14.setText("");
+//                    s.stop_start();
+//                    s.play_team();
+                }
+
+                i = 0;
+                time_start = new Timer(60, new action2());
+                time_start.start();
+
+            } else if (ob.equals(btn_help)) {
+
+//                JOptionPane.showMessageDialog(null, "ahmed");
+                   Help.help.setVisible(true);
+            } else if (ob.equals(btn_levels)) {
+
+                //JOptionPane.showMessageDialog(null, "Yes");
+                Levels.Level.setVisible(true);
+            }
+
+        }
+
+    }
+
+    public class action2 implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            if (i < 29) {
+                label_team.setText(label_team.getText() + ch[i]);
+                i++;
+            } else if (i >= 29 && i < 47) {
+                label_team2.setText(label_team2.getText() + ch[i]);
+                i++;
+            } else if (i >= 47 && i < 61) {
+                label_team3.setText(label_team3.getText() + ch[i]);
+                i++;
+            } else if (i >= 61 && i < 77) {
+                label_team4.setText(label_team4.getText() + ch[i]);
+                i++;
+            } else if (i >= 77 && i < 83) {
+                label_team5.setText(label_team5.getText() + ch[i]);
+                i++;
+            } else if (i >= 83 && i < 106) {
+                label_team6.setText(label_team6.getText() + ch[i]);
+                i++;
+            } else if (i >= 106 && i < 133) {
+                label_team7.setText(label_team7.getText() + ch[i]);
+                i++;
+            } else if (i >= 133 && i < 151) {
+                label_team8.setText(label_team8.getText() + ch[i]);
+                i++;
+            } else if (i >= 150 && i < 180) {
+                label_team9.setText(label_team9.getText() + ch[i]);
+                i++;
+            } else if (i >= 180 && i < 204) {
+                label_team10.setText(label_team10.getText() + ch[i]);
+                i++;
+            } else if (i >= 204 && i < 235) {
+                label_team11.setText(label_team11.getText() + ch[i]);
+                i++;
+            } else if (i >= 235 && i < 262) {
+                label_team12.setText(label_team12.getText() + ch[i]);
+                i++;
+            } else if (i >= 262 && i < 285) {
+                label_team13.setText(label_team13.getText() + ch[i]);
+                i++;
+            } else if (i >= 285 && i < 305) {
+                label_team14.setText(label_team14.getText() + ch[i]);
+                i++;
+            } else if (i == ch.length) {
+                time_start.stop();
+            }
+        }
+    }
+
+    private void transparancy(JButton btn) {
+        //btn.setOpaque(false);
+        btn.setContentAreaFilled(false);
+        btn.setBorderPainted(false);
+    }
+
+    public static void main(String[] args) throws IOException {
+        try {
+            back = new Back();
+            back.setVisible(true);
+        } catch (Exception ex) {
+          //  Logger.getLogger(Back.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // this function for print file about team
+    public char[] print() throws IOException {
+
+        File file = new File("aboutTeam.txt");
+        Scanner input = new Scanner(file);
+        int i = 0;
+        String name = input.nextLine();
+        char ch[] = name.toCharArray();
+        return ch;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+			Face
+/////////////////////////////////////////////////////////////////////////////////////////////
+package sudoku;
+
+//import com.sun.xml.internal.ws.handler.HandlerException;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import javax.swing.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
+/**
+ *
+ * @steve Jobs
+ */
+public class Face extends JFrame {
+
+    Sound s = new Sound ();
+    JLabel label_correct = new JLabel("CORRECT");
+    
+    static int serious = 0;
+    static int sure = 0;
+    int xc = 0, yc = 0;
+    static int num_of_errors = 0;
+    // array for check
+    int[] arr_left_row1 = new int[]{0, 1, 2, 9, 10, 11, 18, 19, 20};
+    int[] arr_center_row1 = new int[]{3, 4, 5, 12, 13, 14, 21, 22, 23};
+    int[] arr_right_row1 = new int[]{6, 7, 8, 15, 16, 17, 24, 25, 26};
+    // array for check
+    int[] arr_left_row2 = new int[]{27, 28, 29, 36, 37, 38, 45, 46, 47};
+    int[] arr_center_row2 = new int[]{30, 31, 32, 39, 40, 41, 48, 49, 50};
+    int[] arr_right_row2 = new int[]{33, 34, 35, 42, 43, 44, 51, 52, 53};
+    // array for check
+    int[] arr_left_row3 = new int[]{54, 55, 56, 63, 64, 65, 72, 73, 74};
+    int[] arr_center_row3 = new int[]{57, 58, 59, 66, 67, 68, 75, 76, 77};
+    int[] arr_right_row3 = new int[]{60, 61, 62, 69, 70, 71, 78, 79, 80};
+
+    // using for method ran 
+    int index = 0;
+    Random r = new Random();
+    int xcordinate = 0;
+    int ycordinate = 0;
+    String check = "", com = "";
+    int temp = 0;
+     // the end
+
+    // labels of the level 
+    JLabel labelScore = new JLabel("Mistakes : ");
+    JLabel labelMistackes = new JLabel("0");
+
+    JLabel labelLevel = new JLabel("level : " + Levels.level);
+    Font fontLevel = new Font("Serif", Font.BOLD, 30);
+    Color colorLevel = new Color(255, 255, 255);
+    // label for show the time now 
+
+    Calendar cel = new GregorianCalendar();
+    JLabel label_time = new JLabel();
+
+    Color color = new Color(255, 255, 255);
+    Font font_time = new Font("serif", Font.BOLD + Font.PLAIN, 25);
+    Font font_second = new Font("serif", Font.BOLD, 15);
+    JLabel last0 = new JLabel("0");
+    static int x0 = 0;
+    JLabel last1 = new JLabel("0");
+    static int x1 = 0;
+    JLabel last2 = new JLabel(":");
+    JLabel last3 = new JLabel("0");
+    static int x3 = 0;
+    JLabel last4 = new JLabel("0");
+    static int x4 = 0;
+    JLabel last_second = new JLabel("0");
+    static int x5 = 0;
+    JLabel first_second = new JLabel("0");
+    static int x6 = 0;
+
+    // Sounds 
+    // button  imageicon for sound 
+    JButton btn_sound = new JButton(new ImageIcon("Images//off3.gif"));
+    JButton btn_sound2 = new JButton(new ImageIcon("Images//off4.gif"));
+
+    // jpanel1 for buttons 
+    JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 27));
+    Font fon = new Font("SERIF", Font.BOLD + Font.ITALIC, 26);
+    JPanel panel2 = new JPanel();
+    // the begining of adding panels 
+    JPanel panel = new JPanel();
+    JLabel label_panel[] = new JLabel[81];
+    Border border_label_sudoku = new LineBorder(Color.LIGHT_GRAY, 1);
+    // the ending od adding panel
+
+    // this jbuttons is equal to 9 buttons i kowen them in an array
+    Color color1 = new Color(42, 59, 102);
+    Color color2 = new Color(38, 61, 105);
+    // border for two panels 
+    Border border = new LineBorder(Color.WHITE, 3);
+    Border border2 = new LineBorder(Color.WHITE, 1);
+
+    Border border3 = new LineBorder(Color.BLACK, 1);
+    Border border10 = new LineBorder(Color.RED, 3);
+    // fonts 
+    Font font = new Font("SERIF", Font.BOLD, 25);
+    JLabel label = new JLabel("TIME:");
+
+    // panel buttons 
+    JButton btn[] = new JButton[11];
+
+    //stop watch 
+    Timer time, time2, time3, time_cel;
+
+    // Font and Color for class random on the labels 
+    Font f_ran = new Font("Serif", Font.BOLD, 35);
+    Color c_ran = new Color(10, 0, 200);
+
+    /// actions int 
+    static int num_of_panel = 0;
+    drawLine d = new drawLine();
+    drawLine d2 = new drawLine();
+    drawLine2 d3 = new drawLine2();
+    drawLine2 d4 = new drawLine2();
+    drawLine d5 = new drawLine();
+    drawLine d6 = new drawLine();
+    drawLine2 d7 = new drawLine2();
+    drawLine2 d8 = new drawLine2();
+
+    // last button in this game 
+    JButton btn1 = new JButton(new ImageIcon("Images//btn1.gif"));
+    JButton btn2 = new JButton(new ImageIcon("Images//btn2.gif"));
+    JButton btn3 = new JButton(new ImageIcon("Images//btn3.gif"));
+
+    public Face() throws NullPointerException, Exception {
+
+        s.play_game();
+        // the things of level class 
+        // Default things
+        //setLayout(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("Sodoku");
+        this.setResizable(false);
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setUndecorated(true);
+        this.setContentPane(new JLabel(new ImageIcon("Images\\back.jpg")));
+        // open music 
+        //Sound.play2();
+        // labels and button and textfield of the footer panel
+        label.setFont(font);
+        label.setForeground(Color.WHITE);
+        label.setBounds(100, 727, 120, 36);
+        add(label);
+
+        labelLevel.setBounds(500, 727, 200, 36);
+        labelLevel.setFont(fontLevel);
+        labelLevel.setForeground(colorLevel);
+        add(labelLevel);
+
+        labelScore.setBounds(900, 727, 200, 36);
+        labelScore.setFont(fontLevel);
+        labelScore.setForeground(colorLevel);
+        add(labelScore);
+
+        labelMistackes.setBounds(1040, 727, 200, 36);
+        labelMistackes.setFont(fontLevel);
+        labelMistackes.setForeground(Color.BLACK);
+        add(labelMistackes);
+
+        // stop watch 
+        last0.setFont(font_time);
+        last0.setForeground(color);
+        last0.setBounds(180, 736, 30, 20);
+        add(last0);
+
+        last1.setFont(font_time);
+        last1.setForeground(color);
+        last1.setBounds(200, 736, 30, 20);
+        add(last1);
+
+        last2.setFont(font_time);
+        last2.setForeground(color);
+        last2.setBounds(220, 736, 30, 20);
+        add(last2);
+
+        last3.setFont(font_time);
+        last3.setForeground(color);
+        last3.setBounds(240, 736, 30, 20);
+        add(last3);
+
+        last4.setFont(font_time);
+        last4.setForeground(color);
+        last4.setBounds(260, 736, 30, 20);
+        add(last4);
+
+        first_second.setFont(font_second);
+        first_second.setForeground(color);
+        first_second.setBounds(280, 729, 30, 25);
+        add(first_second);
+        first_second.setFont(font_second);
+
+        last_second.setFont(font_second);
+        last_second.setForeground(color);
+        last_second.setBounds(290, 729, 30, 25);
+        add(last_second);
+        last_second.setFont(font_second);
+
+        time = new Timer(10, new act());
+        time2 = new Timer(1000, new action2());
+        time3 = new Timer(60000, new action3());
+        time.start();
+        time2.start();
+        time3.start();
+
+        // the end of the stop watch
+        // panel 2 setbounds footer
+        panel2.setBackground(color2);
+        panel2.setBorder(border2);
+        panel2.setBounds(0, 700, this.getWidth(), 100);
+        add(panel2);
+
+        // for loop for adding labels on the panel3 
+        panel.setLayout(new GridLayout(9, 9));
+
+        for (int i = 0; i < label_panel.length; i++) {
+            label_panel[i] = new JLabel();
+            label_panel[i].setBorder(border_label_sudoku);
+
+            label_panel[i].setOpaque(true);
+            label_panel[i].setBackground(Color.black);
+            label_panel[i].addMouseListener(new action_game());
+            panel.add(label_panel[i]);
+            label_panel[i].setFont(new Font("SERIF", Font.BOLD, 30));
+            label_panel[i].setForeground(new Color(255, 255, 255));
+            //label_panel[i].setText("" + i);
+        }
+        d.setBackground(Color.green);
+        d2.setBackground(Color.green);
+        d3.setBackground(Color.green);
+        d4.setBackground(Color.green);
+        d5.setBackground(Color.green);
+        d6.setBackground(Color.green);
+        d7.setBackground(Color.green);
+        d8.setBackground(Color.green);
+
+        d.setBounds(470, 257, 650, 4);
+        d2.setBounds(470, 431, 650, 4);
+        d3.setBounds(470 + 216, 80, 2, 531);
+        d4.setBounds(470 + 432, 80, 2, 531);
+        d5.setBounds(470, 78, 650, 8);
+        d6.setBounds(470, 605, 650, 5);
+        d7.setBounds(470, 80, 2, 531);
+        d8.setBounds(470 + 648, 78, 2, 531);
+        panel.setBounds(470, 80, 650, 530);
+
+        add(d);
+        add(d2);
+        add(d3);
+        add(d4);
+        add(d6);
+        add(d5);
+        add(d7);
+        add(d8);
+        add(panel);
+        
+        label_correct.setFont(new Font("SERIF" , Font.BOLD , 30));
+        label_correct.setForeground(Color.white);
+        label_correct.setVisible(false);
+        label_correct.setBounds(735, 610, 200, 60);
+        add(label_correct);
+        
+        // panel buttons 
+        for (int i = 1; i <= 9; i++) {
+            btn[i] = new JButton("" + i);
+            btn[i].setBackground(Color.WHITE);
+            btn[i].setFont(fon);
+            panel1.add(btn[i]);
+            btn[i].addActionListener(new action_button());
+        }
+        btn[10] = new JButton("X");
+        btn[10].setBackground(Color.WHITE);
+        btn[10].setFont(fon);
+        panel1.add(btn[10]);
+        btn[10].addActionListener(new action_button());
+
+        // panel 1 setbounds  have buttos 
+        panel1.setBackground(color1);
+        panel1.setBorder(border);
+        panel1.setBounds(159, 150, 195, 385);
+        add(panel1);
+
+        // buttons of Sound 
+        /*
+         btn_sound.setBounds(20, 10, 104, 104);
+         btn_sound.setCursor(new Cursor(HAND_CURSOR));
+         btn_sound.setContentAreaFilled(false);
+         btn_sound.addActionListener(new action());
+
+         add(btn_sound);
+
+         btn_sound2.setBounds(20, 10, 104, 104);
+         btn_sound2.setCursor(new Cursor(HAND_CURSOR));
+         btn_sound2.setContentAreaFilled(false);
+         btn_sound2.addActionListener(new action());
+         btn_sound2.setVisible(false);
+         add(btn_sound2);
+         */
+        label_time.setBounds(700, 10, 400, 30);
+        label_time.setFont(font);
+        label_time.setForeground(Color.WHITE);
+        label_time.setText(new Date().toString().substring(0, 20));
+        add(label_time);
+        // function ran for random numbers 
+        ran();
+
+        btn1.setOpaque(false);
+        btn2.setOpaque(false);
+        btn3.setOpaque(false);
+        btn1.setContentAreaFilled(false);
+        btn2.setContentAreaFilled(false);
+        btn3.setContentAreaFilled(false);
+        btn1.setBorderPainted(false);
+        btn2.setBorderPainted(false);
+        btn3.setBorderPainted(false);
+        btn1.setBounds(10, 10, 140, 40);
+        btn2.setBounds(10, 50, 140, 40);
+        btn3.setBounds(10, 90, 140, 40);
+        btn1.setCursor(new Cursor(HAND_CURSOR));
+        btn2.setCursor(new Cursor(HAND_CURSOR));
+        btn3.setCursor(new Cursor(HAND_CURSOR));
+
+        add(btn1);
+        btn1.addActionListener(new action());
+        add(btn2);
+        btn2.addActionListener(new action());
+        add(btn3);
+        btn3.addActionListener(new action());
+
+        btn3.addActionListener(new check_button());
+        btn2.addActionListener(new solve_button());
+    }
+
+    public class action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            Object ob = ae.getSource();
+
+            if (ob.equals(btn_sound)) {
+
+                //Sound.stop_play2();
+                btn_sound.setVisible(false);
+                btn_sound2.setVisible(true);
+
+            } else if (ob.equals(btn_sound2)) {
+
+                // Sound.play2();
+                btn_sound.setVisible(true);
+                btn_sound2.setVisible(false);
+
+            } else if (ob.equals(btn1)) {
+                //Back.face.setVisible(false);
+                //Back.back.setVisible(true);
+            } else if (ob.equals(btn2)) {
+
+            } else if (ob.equals(btn3)) {
+
+            }
+        }
+    }
+
+    public class act implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            if (x6 == 9) {
+                if (x5 == 9) {
+                    x6 = 0;
+                    x5 = 0;
+                }
+                x6 = 0;
+                last_second.setText("" + x6);
+                x5++;
+                first_second.setText("" + x5);
+            } else {
+                x6++;
+                last_second.setText("" + x6);
+            }
+        }
+    }
+
+    public class action2 implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            if (x4 == 9) {
+                if (x3 == 5) {
+                    x4 = 0;
+                    x3 = 0;
+                    last4.setText("" + x4);
+                    last3.setText("" + x3);
+
+                } else {
+                    x4 = 0;
+                    last4.setText("" + x4);
+                    x3++;
+                    last3.setText("" + x3);
+                }
+            } else {
+                x4++;
+                last4.setText("" + x4);
+            }
+
+            label_time.setText(new Date().toString().substring(0, 20));
+        }
+
+    }
+
+    public class action3 implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+            if (x1 == 9) {
+                if (x0 == 5) {
+                    x0 = 0;
+                    x1 = 0;
+                }
+                x1 = 0;
+                last1.setText("" + x1);
+                x0++;
+                last0.setText("" + x0);
+            } else {
+                x1++;
+                last1.setText("" + x1);
+            }
+        }
+
+    }
+
+// static int random_num_of_labelPanel[] = new int[10];
+    int num_random[];
+
+    private void ran() throws Exception {
+
+        char ch = Levels.level.charAt(5);
+
+        switch (ch) {
+            case '1':
+                index = 7;
+                break;
+            case '2':
+                index = 9;
+                break;
+            case '3':
+                index = 11;
+                break;
+            case '4':
+                index = 12;
+                break;
+            case '5':
+                index = 14;
+                break;
+            case '6':
+                index = 16;
+                break;
+        }
+        num_random = new int[index];
+        ArrayList<Integer> list = new ArrayList<>();
+        int arr_forNum[] = new int[index];
+        int arr_forLabels[] = new int[index];
+        for (int i = 0; i < index; i++) {
+
+            arr_forNum[i] = r.nextInt(10);
+            arr_forLabels[i] = r.nextInt(81);
+
+            while (arr_forNum[i] == 0) {
+                arr_forNum[i] = r.nextInt(10);
+            }
+            // عشان ميدخلش ارقام متشابهه خالص  فى ال اراى التانى بتاع ال يبولز بتاعى 
+
+            for (int j = 0; j < i; j++) {
+                if (arr_forLabels[i] == arr_forLabels[j]) {
+                    arr_forLabels[i] = r.nextInt(81);
+                    j = 0;
+                }
+
+            }// end of loop
+            /////////////////////////////////////////////////////////////////
+            xcordinate = arr_forLabels[i] - (arr_forLabels[i] % 9);
+            ycordinate = arr_forLabels[i] - ((arr_forLabels[i] / 9) * 9);
+            /////////////////////////////////////////////////////////////////
+            for (int k = xcordinate; k < (xcordinate + 9); k++) {
+                if (k == arr_forLabels[i] || (label_panel[k].getText()).trim().equals("")) {
+                    continue;
+                }
+                list.add(Integer.parseInt(label_panel[k].getText().trim()));
+            }
+            for (int f = ycordinate; f < 80; f += 9) {
+                if (f == arr_forLabels[i] || (label_panel[f].getText()).equals("")) {
+                    continue;
+                }
+                list.add(Integer.parseInt(label_panel[f].getText().trim()));
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////
+            if (xcordinate <= 18) {
+                if (ycordinate <= 2) {
+                    for (int l = 0; l < arr_left_row1.length; l++) {
+                        if (label_panel[arr_left_row1[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_left_row1[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 5) {
+                    for (int l = 0; l < arr_center_row1.length; l++) {
+                        if (label_panel[arr_center_row1[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_center_row1[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 8) {
+                    for (int l = 0; l < arr_right_row1.length; l++) {
+                        if (label_panel[arr_right_row1[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_right_row1[l]].getText().trim()));
+                    }
+                }
+            }// end of condition 1 
+            else if (xcordinate <= 45) {
+
+                if (ycordinate <= 2) {
+                    for (int l = 0; l < arr_left_row2.length; l++) {
+                        if (label_panel[arr_left_row2[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_left_row2[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 5) {
+
+                    for (int l = 0; l < arr_center_row2.length; l++) {
+                        if (label_panel[arr_center_row2[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_center_row2[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 8) {
+                    for (int l = 0; l < arr_right_row2.length; l++) {
+                        if (label_panel[arr_right_row2[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_right_row2[l]].getText().trim()));
+                    }
+                }
+            }// end of condition 2 
+            else if (xcordinate <= 72) {
+                if (ycordinate <= 2) {
+                    for (int l = 0; l < arr_left_row3.length; l++) {
+                        if (label_panel[arr_left_row3[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_left_row3[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 5) {
+                    for (int l = 0; l < arr_center_row3.length; l++) {
+
+                        if (label_panel[arr_center_row3[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_center_row3[l]].getText().trim()));
+                    }
+                } else if (ycordinate <= 8) {
+                    for (int l = 0; l < arr_right_row3.length; l++) {
+                        if (label_panel[arr_right_row3[l]].getText().equals("")) {
+                            continue;
+                        }
+                        list.add(Integer.parseInt(label_panel[arr_right_row3[l]].getText().trim()));
+                    }
+                }
+            }// condition 3
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            list = shift(list);
+            for (int u = 0; u < list.size(); u++) {
+                if (arr_forNum[i] == list.get(u)) {
+                    arr_forNum[i] = r.nextInt(10);
+                    while (arr_forNum[i] == 0) {
+                        arr_forNum[i] = r.nextInt(10);
+                    }
+                    u = 0;
+                }
+            }
+            label_panel[arr_forLabels[i]].setText("   " + arr_forNum[i]);
+            label_panel[arr_forLabels[i]].setForeground(Color.white);
+            label_panel[arr_forLabels[i]].setBackground(new Color(42, 59, 142));
+            list.clear();
+            num_random[i] = arr_forLabels[i];
+        }//end of for loop
+
+    }// end of the action
+
+    public ArrayList<Integer> shift(ArrayList list) {
+        Set<Integer> s = new HashSet<>(list);
+        return list;
+    }
+
+    // actions of the game 
+    public class action_game implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+            Object a = e.getSource();
+            if (SwingUtilities.isLeftMouseButton(e)) {
+
+                for (int k = 0; k < label_panel.length; k++) {
+
+                    if (a.equals(label_panel[k])) {
+                        num_of_panel = k;
+                        break;
+                    }
+                }
+
+                label_panel[num_of_panel].setBorder(border10);
+
+                for (int i = 0; i < label_panel.length - 1; i++) {
+
+                    if (i == num_of_panel) {
+
+                    } else {
+                        label_panel[i].setBorder(border_label_sudoku);
+
+                    }
+                }
+
+            }
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
+    }
+
+// buttons actions 
+    public class action_button implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            Object ob = e.getSource();
+            int tt =0;
+            int x = 0;
+            int y = 0;
+            int xcor = 0;
+            int ycor = 0;
+            // the beging of the if condition statemente for writting on the labels of the array
+            if (ob.equals(btn[10])) {
+                for (int i = 0; i < num_random.length; i++) {
+                    if (num_of_panel == num_random[i]) {
+                        x = 1;
+                    }
+                }
+                if (x == 0) {
+                    label_panel[num_of_panel].setText("");
+                    label_panel[num_of_panel].setBackground(Color.black);
+                } else {
+
+                }
+                x = 0;
+            } else {
+                for (int i = 0; i < btn.length - 1; i++) {
+
+                    if (ob.equals(btn[i])) {
+
+                        for (int j = 0; j < num_random.length; j++) {
+                            if (num_of_panel == num_random[j]) {
+                                y = 1;
+                            }
+                        }
+                        if (y == 0) {
+                            label_panel[num_of_panel].setText("   " + btn[i].getText());
+                            label_panel[num_of_panel].setForeground(new Color(255, 255, 255));
+                            label_panel[num_of_panel].setBackground(new Color(24, 37, 50));
+
+                            xcor = num_of_panel - (num_of_panel % 9);
+                            ycor = num_of_panel - ((num_of_panel / 9) * 9);
+                            for (int n = xcor; n < (xcor + 9); n++) {
+                                if (num_of_panel == n) {
+
+                                } else if (label_panel[num_of_panel].getText().equals(label_panel[n].getText())) {
+                                    label_panel[num_of_panel].setBackground(Color.yellow);
+                                    
+                                    num_of_errors++;
+                                    labelMistackes.setText("" + num_of_errors);
+                                    tt ++;
+                                    break;
+                                    /////////////////////////صوت////////////////
+                                } 
+                            }
+
+                            for (int m = ycor; m < 80; m += 9) {
+                                if (num_of_panel == m) {
+
+                                } else if (label_panel[num_of_panel].getText().equals(label_panel[m].getText())&&tt==0) {
+                                    label_panel[num_of_panel].setBackground(Color.yellow);
+                                    num_of_errors++;
+                                    labelMistackes.setText("" + num_of_errors);
+                                    break;
+                                    ///////////////////////صوت////////////////////
+                                } 
+                            }
+                        }
+                        y = 0;
+                    }
+                    
+                }// the end of the for loop statement
+            }// the ending of the else statement
+
+        }
+    }
+
+    public class check_button implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (int i = 0; i < 81; i++) {
+                if (label_panel[i].getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "noop");
+                    sure++;
+                    break;
+                }
+            }
+                           
+                for (int i = 0; i < 81; i++) {
+
+                    xc = i - (i % 9);
+                    yc = i - ((i / 9) * 9);
+                    for (int x = xc; x < (xc + 9); x++) {
+                        if (i == x ||label_panel[x].getText().equals("")) {
+
+                        } else if (label_panel[i].getText().equals(label_panel[x].getText())) {
+                            label_panel[i].setBackground(Color.GREEN);
+                            label_panel[x].setBackground(Color.GREEN);
+                            sure++;
+                            //////////////////////////////صوت/////////////////
+                            break;
+                        }
+                    }
+                    for (int m = yc; m < 80; m += 9) {
+                        if (i == m||label_panel[m].getText().equals("")) {
+
+                        } else if (label_panel[i].getText().equals(label_panel[m].getText())) {
+                            label_panel[i].setBackground(Color.GREEN);
+                            label_panel[m].setBackground(Color.GREEN);
+                            sure++;
+                            ///////////////صوت ////////////////////////////
+                            break;
+                        }
+                    }
+
+                }
+            
+            if (sure==0){
+                s.stop_game();
+                s.play_win();
+                label_correct.setVisible(true);
+                
+            }
+        }
+
+    }
+
+    public class solve_button implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int xco = 0, yco = 0, s = 0;
+            ArrayList<Integer> list2 = new ArrayList<>();
+
+            for (int i = 0; i < 81; i++) {
+                for (int j = 0; j < num_random.length; j++) {
+                    if (i == num_random[j]) {
+                        serious++;
+                    }
+                }
+                if (serious == 0) {
+                    xco = i - (i % 9);
+                    yco = i - ((i / 9) * 9);
+                    for (int x = xco; x < (xco + 9); x++) {
+
+                        if (i == x || label_panel[x].getText().equals("")) {
+                            continue;
+                        }
+                        list2.add(Integer.parseInt(label_panel[x].getText().trim()));
+                    }
+
+                    for (int m = yco; m < 80; m += 9) {
+
+                        if (i == m || label_panel[m].getText().equals("")) {
+                            continue;
+                        }
+                        list2.add(Integer.parseInt(label_panel[m].getText().trim()));
+                    }
+                    list2 = shift(list2);
+                    ///////////////////////////////////////////////////
+
+                    if (xco <= 18) {
+                        if (yco <= 2) {
+                            for (int l = 0; l < arr_left_row1.length; l++) {
+                                if (label_panel[arr_left_row1[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_left_row1[l]].getText().trim()));
+                            }
+                        } else if (yco <= 5) {
+                            for (int l = 0; l < arr_center_row1.length; l++) {
+                                if (label_panel[arr_center_row1[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_center_row1[l]].getText().trim()));
+                            }
+
+                        } else if (yco <= 8) {
+                            for (int l = 0; l < arr_right_row1.length; l++) {
+                                if (label_panel[arr_right_row1[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_right_row1[l]].getText().trim()));
+                            }
+                        }
+                    }// end of condition 1 
+                    else if (xco <= 45) {
+
+                        for (int l = 0; l < arr_left_row2.length; l++) {
+                            if (label_panel[arr_left_row2[l]].getText().equals("")) {
+                                continue;
+                            }
+                            list2.add(Integer.parseInt(label_panel[arr_left_row2[l]].getText().trim()));
+
+                        }
+                    } else if (yco <= 5) {
+                        for (int l = 0; l < arr_center_row2.length; l++) {
+                            if (label_panel[arr_center_row2[l]].getText().equals("")) {
+                                continue;
+                            }
+                            list2.add(Integer.parseInt(label_panel[arr_center_row2[l]].getText().trim()));
+
+                        }
+                    } else if (yco <= 8) {
+
+                        for (int l = 0; l < arr_right_row2.length; l++) {
+                            if (label_panel[arr_right_row2[l]].getText().equals("")) {
+                                continue;
+                            }
+                            list2.add(Integer.parseInt(label_panel[arr_right_row2[l]].getText().trim()));
+                        }
+
+                    }// end of condition 2 
+                    else if (xco <= 72) {
+                        if (yco <= 2) {
+                            for (int l = 0; l < arr_left_row3.length; l++) {
+                                if (label_panel[arr_left_row3[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_left_row3[l]].getText().trim()));
+                            }
+
+                        } else if (yco <= 5) {
+
+                            for (int l = 0; l < arr_center_row3.length; l++) {
+                                if (label_panel[arr_center_row3[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_center_row3[l]].getText().trim()));
+                            }
+                        } else if (yco <= 8) {
+
+                            for (int l = 0; l < arr_right_row3.length; l++) {
+                                if (label_panel[arr_right_row3[l]].getText().equals("")) {
+                                    continue;
+                                }
+                                list2.add(Integer.parseInt(label_panel[arr_right_row3[l]].getText().trim()));
+                            }
+                        }
+                    }// condition 3
+
+                    ///////////////////////////////////////////////////
+                    for (int k = 1; k <= 9; k++) {
+                        for (int j = 0; j < list2.size(); j++) {
+                            if (k == list2.get(j)) {
+                                s++;
+                                break;
+                            }
+                        }
+                        if (s == 0) {
+                            label_panel[i].setText("   " + k);
+                            label_panel[i].setForeground(new Color(255, 255, 255));
+                            label_panel[i].setBackground(new Color(24, 37, 50));
+
+                        }
+                        s = 0;
+                    }
+
+                }
+                list2.clear();
+                serious = 0;
+            }
+        }
+    }
+
+    class drawLine extends JPanel {
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            g.drawLine(470, 258, 1121, 258);
+            g.drawLine(470, 259, 1121, 259);
+            g.drawLine(470, 260, 1121, 260);
+
+        }
+    }
+
+    class drawLine2 extends JPanel {
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            g.drawLine(470 + 219, 80, 470 + 219, 610);
+            g.drawLine(470 + 219, 80, 470 + 219, 610);
+            g.drawLine(470 + 219, 80, 470 + 219, 610);
+
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////
+			Help
+//////////////////////////////////////////////////////////////////////
+package sudoku;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+/**
+ *
+ * @steve Jobs
+ */
+public class Help extends JFrame {
+
+   static Help help = new Help();
+    JLabel sudoku = new JLabel("Sudoku");
+    Color sud = new Color(0, 0, 0);
+    Font sudo = new Font("Serif", Font.BOLD + Font.CENTER_BASELINE, 40);
+    Font font = new Font("SERIF", Font.BOLD + Font.ITALIC, 28);
+    JLabel label1 = new JLabel("put numbre from one to nine ");
+    JLabel label2 = new JLabel("in every row and column");
+
+    JLabel label3 = new JLabel("but try to avoid to put ");
+    JLabel label4 = new JLabel("two numbers similar to each other");
+    JLabel label5 = new JLabel("in the same row or column");
+    JLabel label6 = new JLabel("another thing this is an intelligence game.");
+    Color color = new Color(0, 10, 46);
+
+    JButton btn = new JButton(new ImageIcon("Images//quit_black.gif"));
+
+    public Help() {
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Sudoku");
+        this.setSize(700, 500);
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setUndecorated(true);
+        setBackground(new Color(0, 0, 0, 0));
+
+        label1.setFont(font);
+        label2.setFont(font);
+        label3.setFont(font);
+        label4.setFont(font);
+        label5.setFont(font);
+        label6.setFont(font);
+
+        label1.setForeground(color);
+        label2.setForeground(color);
+        label3.setForeground(color);
+        label4.setForeground(color);
+        label5.setForeground(color);
+        label6.setForeground(color);
+
+        this.setContentPane(new JLabel(new ImageIcon("Images//back.gif")));
+        setLayout(null);
+        label1.setBounds(120, 110, 500, 40);
+        add(label1);
+        label2.setBounds(120, 150, 500, 40);
+        add(label2);
+        label3.setBounds(120, 190, 500, 40);
+        add(label3);
+        label4.setBounds(120, 230, 500, 40);
+        add(label4);
+
+        label5.setBounds(120, 270, 500, 40);
+        add(label5);
+        label6.setBounds(120, 310, 500, 40);
+        add(label6);
+
+        sudoku.setFont(sudo);
+        sudoku.setForeground(sud);
+
+        sudoku.setBounds(280, 50, 200, 50);
+
+        add(sudoku);
+        btn.setBounds(225, 350, 250, 100);
+        btn.setFont(sudo);
+        btn.setContentAreaFilled(false);
+        btn.setOpaque(false);
+        btn.setBorderPainted(false);
+        btn.setCursor(new Cursor(HAND_CURSOR));
+        btn.setRolloverIcon(new ImageIcon("Images//quit_white.gif"));
+        add(btn);
+        btn.addActionListener(new action());
+
+    }
+
+    public class action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            help.dispose();
+        }
+
+    }
+}
+/////////////////////////////////////////////////////////////////
+			Levels
+///////////////////////////////////////////////////////////////////////////
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sudoku;
+
+import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @steve Jobs 
+ */
+public class Levels extends JFrame {
+
+    static String level = "level1";
+    static Levels Level = new Levels();
+    ImageIcon icon1 = new ImageIcon("Images//level1.gif");
+    ImageIcon icon2 = new ImageIcon("Images//level2.gif");
+    ImageIcon icon3 = new ImageIcon("Images//level3.gif");
+    ImageIcon icon4 = new ImageIcon("Images//level4.gif");
+    ImageIcon icon5 = new ImageIcon("Images//level5.gif");
+    ImageIcon icon6 = new ImageIcon("Images//level6.gif");
+
+    JButton jbtlevel1 = new JButton(icon1);
+    JButton jbtlevel2 = new JButton(icon2);
+    JButton jbtlevel3 = new JButton(icon3);
+    JButton jbtlevel4 = new JButton(icon4);
+    JButton jbtlevel5 = new JButton(icon5);
+    JButton jbtlevel6 = new JButton(icon6);
+
+    public Levels() {
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setLocationRelativeTo(null);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        setUndecorated(true);
+        this.setResizable(false);
+
+        setContentPane(new JLabel(new ImageIcon("Images//load.jpg")));
+
+        setLayout(null);
+
+        // level 1
+        trans(jbtlevel1);
+        jbtlevel1.setBounds(230, 100, 350, 100);
+        jbtlevel1.setRolloverIcon(new ImageIcon("Images//1.gif"));
+        add(jbtlevel1);
+        // level 2
+        trans(jbtlevel2);
+        jbtlevel2.setBounds(230, 300, 350, 100);
+        jbtlevel2.setRolloverIcon(new ImageIcon("Images//2.gif"));
+        add(jbtlevel2);
+        // level 3
+        trans(jbtlevel3);
+        jbtlevel3.setBounds(230, 500, 350, 100);
+        jbtlevel3.setRolloverIcon(new ImageIcon("Images//3.gif"));
+        add(jbtlevel3);
+        //level 4
+        trans(jbtlevel4);
+        jbtlevel4.setBounds(700, 100, 350, 100);
+        jbtlevel4.setRolloverIcon(new ImageIcon("Images//4.gif"));
+        add(jbtlevel4);
+        // level 5
+        trans(jbtlevel5);
+        jbtlevel5.setBounds(700, 300, 350, 100);
+        jbtlevel5.setRolloverIcon(new ImageIcon("Images//5.gif"));
+        add(jbtlevel5);
+        // level 6
+        trans(jbtlevel6);
+        jbtlevel6.setBounds(700, 500, 350, 100);
+        jbtlevel6.setRolloverIcon(new ImageIcon("Images//6.gif"));
+        add(jbtlevel6);
+        
+        
+        // actions 
+        jbtlevel1.addActionListener(new action());
+        jbtlevel2.addActionListener(new action());
+        jbtlevel3.addActionListener(new action());
+        jbtlevel4.addActionListener(new action());
+        jbtlevel5.addActionListener(new action());
+        jbtlevel6.addActionListener(new action());
+
+    }
+
+    public class action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            Object o = e.getSource();
+            if (o.equals(jbtlevel1)) {
+                level =  level.replace(level.charAt(5), '1');
+               Level.setVisible(false);
+                
+            } else if (o.equals(jbtlevel2)) {
+              level =  level.replace(level.charAt(5), '2');
+               Level.setVisible(false);
+
+            } else if (o.equals(jbtlevel3)) {
+                level =  level.replace(level.charAt(5), '3');
+               Level.setVisible(false);
+
+            } else if (o.equals(jbtlevel4)) {
+                level =  level.replace(level.charAt(5), '4');
+               Level.setVisible(false);
+            } else if (o.equals(jbtlevel5)) {
+                level =  level.replace(level.charAt(5), '5');
+               Level.setVisible(false);
+            } else {
+                level =  level.replace(level.charAt(5), '6');
+               Level.setVisible(false);
+            }
+        }
+
+    }
+
+    private void trans(JButton b) {
+
+        b.setOpaque(false);
+        b.setBorderPainted(false);
+        b.setContentAreaFilled(false);
+        b.setCursor(new Cursor(HAND_CURSOR));
+    }
+
+}
+////////////////////////////////////////////////////////////////////////
+				Sound
+/////////////////////////////////////////////////////////////////////////////////////
+package sudoku;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+public class Sound {
+
+     InputStream game, team , win ,  lose , level , start ;
+     AudioStream as_game, as_team ,as_win , as_lose , as_level , as_start ;
+
+    public Sound() throws Exception {
+
+        lose = new FileInputStream("src\\حاول ثانية.wav");
+        game = new FileInputStream("src\\start.wav");
+        team = new FileInputStream("src\\About_team.wav");
+        win = new FileInputStream("src\\right.wav");
+        
+        level = new FileInputStream("src\\levels.wav");
+        start = new FileInputStream("src\\play.wav");
+        
+        as_game = new AudioStream(game);
+        as_team = new AudioStream(team);
+        as_win = new AudioStream(win);
+        as_lose = new AudioStream(lose);
+        as_level = new AudioStream(level);
+        as_start = new AudioStream(start);
+        
+    }
+
+    public void play_game() {
+        AudioPlayer.player.start(as_game);
+    }
+
+    public void stop_game() {
+        AudioPlayer.player.stop(as_game);
+    }
+    //////////////////////////////////////////////
+    
+    public void play_team() {
+        AudioPlayer.player.start(as_team);
+    }
+
+    public void stop_team() {
+        AudioPlayer.player.stop(as_team);
+    }
+    //////////////////////////////////////////////
+    
+    public void play_win() {
+        AudioPlayer.player.start(as_win);
+    }
+
+    public void stop_win() {
+        AudioPlayer.player.stop(as_win);
+    }
+    /////////////////////////////////////////////
+    
+    public void play_lose() {
+        AudioPlayer.player.start(as_lose);
+    }
+
+    public void stop_lose() {
+        AudioPlayer.player.stop(as_lose);
+    }
+    
+    ///////////////////////////////////////
+    
+    public void play_level() {
+        AudioPlayer.player.start(as_level);
+    }
+
+    public void stop_level() {
+        AudioPlayer.player.stop(as_level);
+    }
+    
+    /////////////////////////////////////////
+    
+    public void play_start() {
+        AudioPlayer.player.start(as_start);
+    }
+
+    public void stop_start() {
+        AudioPlayer.player.stop(as_start);
+    }
+    public static void main(String[] args) throws Exception {
+        Sound s = new Sound ();
+        s.play_lose();
+    }
+}
+/////////////////////////////////////////////////////////////////////
